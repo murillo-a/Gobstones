@@ -1,0 +1,13 @@
+/*
+3. Poniendo en vecinas
+Escribir un programa que ponga una bolita de color Azul en la celda vecina al Norte de la actual.
+*/
+program {
+    PonerBolaAzulAlNorte()
+}
+
+procedure PonerBolaAzulAlNorte() {
+    Mover(Norte)
+    Poner(Azul)
+    Mover(Sur)
+}

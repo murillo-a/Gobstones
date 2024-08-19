@@ -1,0 +1,70 @@
+// Ejercicio 1
+procedure IntercambiarEstrellaPorCírculoAlEste() {
+    /*
+    PROPOSITO: Intercambia una ficha “estrella” en la celda actual, por una con
+    aquella ficha “círculo” en la celda lindante al Este. 
+    
+    PRECONDICIONES: Debe haber una estrella en la celda actual y un círculo en la
+    celda lindante al Este.
+    */
+
+    Sacar(Estrella)
+    Poner(Circulo)
+    Mover(Este)
+    Sacar(Circulo)
+    Poner(Estrella)
+    Mover(Oeste)
+}
+
+// Ejercicio 2
+procedure QuemarSucesiónDe3RombosAlNorte() {
+    /*
+    PROPOSITO: “Quema” (elimina) las tres fichas consecutivas de “rombos” que se encuentran ubicados desde la celda actual y hasta dos celdas al Norte
+    de la actual.
+    
+    PRECONDICIONES: Deben existir “rombos” en la celda actual, en la lindante al Norte y en la celda dos lugares al Norte de la actual.
+    */
+
+    repeat (2) {
+        Sacar(Rombo)
+        Mover(Norte)
+    }
+    Sacar(Rombo)
+    MoverCabezal2AlSur()
+}
+
+procedure MoverCabezal2AlSur() {
+    /*
+    PROPOSITO: Mueve el cabezal dos celdas al Sur.
+    
+    PRECONDICIONES: Deben haber al menos dos celdas al Sur de la celda actual.
+    */
+    repeat(2) {
+        Mover(Sur)
+    }
+}
+
+// Ejercicio 3
+procedure Reponer3FichasAlNorte() {
+    /*
+    PROPOSITO: Coloca fichas nuevas de forma aleatoria: una en la celda actual, la celda
+    lindante al Norte y la celda dos lugares al Norte de la actual.
+    
+    PRECONDICIONES: Deben estar vacías: la celda actual, la lindante al Norte y la celda dos lugares al Norte de la actual.
+    */
+    
+    repeat(2) {
+        PonerFichaAleatoria()
+        Mover(Norte)
+    }
+    PonerFichaAleatoria()
+    MoverCabezal2AlSur()
+}
+
+// primitiva
+procedure PonerFichaAleatoria() {
+    /*
+    Propósito. Poner una ficha aleatoria en la celda actual.
+    Precondición. La celda actual debe estar vacía.
+    */
+}

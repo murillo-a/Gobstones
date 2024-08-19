@@ -1,0 +1,14 @@
+/*
+2. Moviendo bolitas
+Escribir un programa que mueva una bolita de color Negro de la celda actual a la
+celda vecina al Este, dejando el cabezal en la celda lindante al Este.
+*/
+program {
+    MoverBolaNegraAlEste()
+}
+
+procedure MoverBolaNegraAlEste() {
+    Sacar(Negro)
+    Mover(Este)
+    Poner(Negro)
+}

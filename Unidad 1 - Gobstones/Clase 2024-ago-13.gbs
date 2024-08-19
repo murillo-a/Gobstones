@@ -1,0 +1,49 @@
+program{
+    /*
+    Proposito: agregar 12 bolitas de color rojo en la celda más al este de la fila actual.
+    Precondiciones: debe haber una bolita negra en la celda más al este de la fila actual
+    ^^ siempre escribir el "ninguna" si no hay precondición!! o "no tiene", etc. así queda claro que sabemos que no hay precondición. Y no que no lo pensamos/no sabíamos
+    */
+}
+
+program {
+    /*
+    PROPOSITO: 
+    
+    PRECONDICIONES: 
+    */
+    
+    
+}
+
+comandos totales: siempre voy a poder hacerlos
+
+comandos parciales: no siempre se pueden ejecutar
+(mover, sacar, x ej)
+
+//comment
+
+/*
+comment
+*/
+
+comandos primitivos
+
+Mover(Norte)
+Poner(Rojo)
+Sacar(Verde)
+IrAlBorde(Sur)
+
+Literales
+
+Azul
+Verde
+Negro
+Rojo
+
+Norte
+Este
+Sur
+Oeste
+
+// nunca empiezo escribiendo código
