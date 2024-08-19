@@ -1,0 +1,49 @@
+program {
+    /*
+    PROPOSITO: Borra un cuadrado de color verde de 3 celdas de lado comenzando y terminando en el centro
+    del mismo.
+    
+    PRECONDICIONES: 
+    *El tablero tiene que contener un cuadrado de color verde de 3 celdas de lado
+    *Una celda pintada de verde se representa con una sola bolita verde
+    */
+    
+// Ir al vertice Norte-Oeste
+    MoverNorteYOeste()
+
+// Borrar la fila de color verde hacia el Este
+    Sacar(Verde) Mover(Este)
+    Sacar(Verde) Mover(Este)
+    Sacar(Verde)
+
+// Volver al borde Oeste
+    Mover(Oeste)  Mover(Oeste)
+
+// Ir al sur una celda
+    Mover(Sur)
+
+// Borrar la fila de color verde hacia el Este
+    Sacar(Verde) Mover (Este)
+    Sacar(Verde) Mover (Este)
+    Sacar(Verde)
+
+// Volver al borde Oeste
+    Mover(Oeste)  Mover(Oeste)
+
+// Ir al sur una celda
+    Mover(Sur)
+
+// Borrar la fila de color verde hacia el Este
+    Sacar(Verde) Mover (Este)
+    Sacar(Verde) Mover (Este)
+    Sacar(Verde)
+
+// Volver al centro del tablero
+    MoverNorteYOeste()
+
+}
+
+procedure MoverNorteYOeste() {
+    Mover(Oeste)
+    Mover(Norte)
+}

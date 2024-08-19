@@ -1,0 +1,49 @@
+program {
+    /*
+    PROPOSITO: Dibujar un cuadrado de color verde de 3 celdas de lado comenzando y terminando en el centro
+    del mismo.
+    
+    PRECONDICIONES: 
+    *El tablero tiene que estar vacío
+    *Una celda pintada de verde se representa con una sola bolita verde
+    */
+    
+// Ir al vertice Norte-Oeste
+    MoverNorteYOeste()
+
+// Pintar la fila de color verde hacia el Este
+    Poner(Verde) Mover(Este)
+    Poner(Verde) Mover(Este)
+    Poner(Verde)
+
+// Volver al borde Oeste
+    Mover(Oeste)  Mover(Oeste)
+
+// Ir al sur una celda
+    Mover(Sur)
+
+// Pintar la fila de color verde hacia el Este
+    Poner(Verde) Mover (Este)
+    Poner(Verde) Mover (Este)
+    Poner(Verde)
+
+// Volver al borde Oeste
+    Mover(Oeste)  Mover(Oeste)
+
+// Ir al sur una celda
+    Mover(Sur)
+
+// Pintar la fila de color verde hacia el Este
+    Poner(Verde) Mover (Este)
+    Poner(Verde) Mover (Este)
+    Poner(Verde)
+
+// Volver al centro del tablero
+    MoverNorteYOeste()
+
+}
+
+procedure MoverNorteYOeste() {
+    Mover(Oeste)
+    Mover(Norte)
+}
