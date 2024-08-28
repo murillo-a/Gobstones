@@ -1,0 +1,79 @@
+// Ejercicio 1
+procedure RellenarEstaColumnaConObstaculos() {
+    /*
+    PROPOSITO: Rellena la columna de la celda actual con obstáculos
+    
+    PRECONDICIONES: Debe haber únicamente una ficha en cada posición a colocar estos obstáculos.
+    */
+
+    IrAlBorde(Norte)
+    repeat(5){
+        RemoverFichaAqui()
+        PonerObstaculo()
+        Mover(Sur)
+    }
+    RemoverFichaAqui()
+    PonerObstaculo()
+}
+
+// primitiva
+procedure RemoverFichaAqui() {
+    /*
+    PROPOSITO: Elimina la ficha de la ubicación actual.
+    PRECONDICIONES: Debe haber una ficha en la ubicación actual.
+    */
+}
+
+procedure PonerObstaculo() {
+    repeat(2){
+        Poner(Negro)
+        }
+}
+
+// Ejercicio 2
+procedure IntercambiarEstrellaPorCirculoDesdeEl_ADistancia_(direccionDondePoner, distanciaEnCeldas) {
+    /*
+    PROPOSITO: Intercambia la ficha estrella, de ubicación actual, por la ficha círculo, desde una dirección y distancia indicada.
+    PARAMETROS: 
+        *direccionDondePoner: Dirección - La dirección en la que se moverá el cabezal
+        *distanciaEnCeldas: Número - La distancia representada en celdas que indica cuántas celdas se moverá el cabezal
+    PRECONDICIONES: Deben existir una estrella en la celda actual, en la lindante al Norte y en la celda dos lugares al Norte de la actual.
+    Deben haber al menos **distanciaAlCelda** celdas hacia la dirección **direccionDondePoner** de la celda actual.
+    */
+
+    SacarEstrella()
+    PonerCirculo()
+    repeat(distanciaEnCeldas) {
+        Mover(direccionDondePoner)
+    }
+    SacarCirculo()
+    PonerEstrella()
+}
+
+procedure SacarCirculo() {
+    Sacar(Negro)
+    repeat(2) {
+        Sacar(Azul)
+    }
+}
+
+procedure PonerCirculo() {
+    Poner(Negro)
+    repeat(2) {
+        Poner(Azul)
+    }
+}
+
+procedure SacarEstrella() {
+    Sacar(Negro)
+    repeat(5) {
+        Sacar(Azul)
+    }
+}
+
+procedure PonerEstrella() {
+    Poner(Negro)
+    repeat(5) {
+        Poner(Azul)
+    }
+}
