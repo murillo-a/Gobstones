@@ -1,0 +1,34 @@
+// Ejercicio 1
+procedure RemoverObstaculoEnUnVertice() {
+    /*
+        PROPÓSITO: Elimina el obstáculo de la ubicación actual, solo si este se encuentra en una de las
+        4 esquinas de la grilla. Entendemos por remover obstáculo: dejar la ubicación vacía de bolitas.
+
+        PRECONDICIONES: La celda no debe estar vacía.
+    */
+    // Remueve el obstáculo si la celda actual está en algún vertice sur, o en algún vértice norte
+    if((puedeMover(Norte) && (not puedeMover(Sur))) || (puedeMover(Sur) && (not puedeMover(Norte)))) {
+        RemoverObstaculoSiHay()
+}
+}
+
+procedure RemoverObstaculoSiHay() {
+    /*
+        PROPÓSITO: Elimina el obstáculo de la ubicación actual, solo si este se encuentra en una de las
+        4 esquinas de la grilla. Entendemos por remover obstáculo: dejar la ubicación vacía de bolitas.
+
+        PRECONDICIONES: La celda no debe estar vacía.
+    */
+    if (hayBolitas(Azul)) {
+        repeat(nroBolitas(Azul)){
+            Sacar(Azul)
+        }
+    if (hayBolitas(Negro)) {
+        repeat(nroBolitas(Negro)){
+            Sacar(Negro)
+        }
+    }
+}
+}
+
+// Ejercicio 2
