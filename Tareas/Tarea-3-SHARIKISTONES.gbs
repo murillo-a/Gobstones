@@ -1,4 +1,8 @@
 // Ejercicio 1
+program {
+    RemoverObstaculoEnUnVertice()
+}
+
 procedure RemoverObstaculoEnUnVertice() {
     /*
         PROPÓSITO: Elimina el obstáculo de la ubicación actual, solo si este se encuentra en una de las
@@ -6,10 +10,17 @@ procedure RemoverObstaculoEnUnVertice() {
 
         PRECONDICIONES: La celda no debe estar vacía.
     */
-    // Remueve el obstáculo si la celda actual está en algún vertice sur, o en algún vértice norte
-    if((puedeMover(Norte) && (not puedeMover(Sur))) || (puedeMover(Sur) && (not puedeMover(Norte)))) {
+    if (
+        // Evalúa si la celda actual está en el borde Norte o el borde Sur
+        (puedeMover(Norte) && (not puedeMover(Sur))
+        || puedeMover(Sur) && (not puedeMover(Norte)))
+        // Evalúa si la celda actual está en el borde Oeste o el borde Este
+        && (puedeMover(Oeste) && (not puedeMover(Este))
+        || puedeMover(Este) && (not puedeMover(Oeste)))
+        )
+        {
         RemoverObstaculoSiHay()
-}
+        }
 }
 
 procedure RemoverObstaculoSiHay() {
