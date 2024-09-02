@@ -43,3 +43,64 @@ procedure RemoverObstaculoSiHay() {
 }
 
 // Ejercicio 2
+//TODO
+procedure RodearFichaAqui() {
+    /*
+        PROPÓSITO: Rodea la ficha de la ubicación actual con obstáculos.
+        PRECONDICIONES: Todas las ubicaciones lindantes, hacia las 4 direcciones, y sus respectivas direcciones diagonales,
+        deben estar vacías.
+    */
+    if (puedeMover(Norte)) {
+        Mover(Norte)
+        if (puedeMover(Oeste) && puedeMover(Este)) {
+            Mover(Oeste)
+            PonerObstaculo()
+            repeat(2) {
+                Mover(Este)
+                PonerObstaculo()
+            }
+        } elseif (puedeMover(Oeste)) {
+            PonerObstaculo()
+            Mover(Oeste)
+            PonerObstaculo()
+            Mover(Sur)
+            PonerObstaculo()
+            //aquí ya está en la fila original
+        } else {
+            PonerObstaculo()
+            Mover(Este)
+            PonerObstaculo()
+            Mover(Sur)
+            PonerObstaculo()
+            //aquí ya está en la fila original
+        }
+/*
+        Mover(Sur)
+        PonerObstaculo()
+    }
+    if (puedeMover(Sur)) {
+    
+    }
+    repeat(2) {
+    if (puedeMover(Sur)) {
+        Mover(Sur)
+        PonerObstaculo()
+    }
+    }
+    if(puedeMover(Oeste)){
+        Mover(Oeste)
+        PonerObstaculo()
+    }
+    */
+    }
+}
+
+procedure PonerObstaculo() {
+    Poner_DeColor_(2, Negro)
+}
+
+procedure Poner_DeColor_(cantidadAPoner, color) {
+    repeat(cantidadAPoner) {
+        Poner(color)
+    }
+}
