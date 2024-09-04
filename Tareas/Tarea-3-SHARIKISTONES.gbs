@@ -43,7 +43,7 @@ procedure RemoverObstaculoSiHay() {
 }
 
 // Ejercicio 2
-//TODO
+//OPTIMIZE: create procedures
 procedure RodearFichaAqui() {
     /*
         PROPÓSITO: Rodea la ficha de la ubicación actual con obstáculos.
@@ -52,46 +52,23 @@ procedure RodearFichaAqui() {
     */
     if (puedeMover(Norte)) {
         Mover(Norte)
-        if (puedeMover(Oeste) && puedeMover(Este)) {
-            Mover(Oeste)
-            PonerObstaculo()
-            repeat(2) {
-                Mover(Este)
-                PonerObstaculo()
-            }
-        } elseif (puedeMover(Oeste)) {
-            PonerObstaculo()
-            Mover(Oeste)
-            PonerObstaculo()
-            Mover(Sur)
-            PonerObstaculo()
-            //aquí ya está en la fila original
-        } else {
-            PonerObstaculo()
-            Mover(Este)
-            PonerObstaculo()
-            Mover(Sur)
-            PonerObstaculo()
-            //aquí ya está en la fila original
-        }
-/*
-        Mover(Sur)
         PonerObstaculo()
+        Mover(Sur)
     }
-    if (puedeMover(Sur)) {
-    
+    if (puedeMover(Este)) {
+        Mover(Este)
+        PonerObstaculo()
+        Mover(Oeste)
     }
-    repeat(2) {
     if (puedeMover(Sur)) {
         Mover(Sur)
         PonerObstaculo()
+        Mover(Norte)
     }
-    }
-    if(puedeMover(Oeste)){
+        if (puedeMover(Oeste)) {
         Mover(Oeste)
         PonerObstaculo()
-    }
-    */
+        Mover(Este)
     }
 }
 
