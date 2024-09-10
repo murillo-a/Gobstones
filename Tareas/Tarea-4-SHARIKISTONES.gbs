@@ -1,0 +1,45 @@
+program {
+
+}
+
+// Ejercicio 1
+function formaDefichaActual() {
+    /*
+    PROPÓSITO: Describe el número que se corresponde a la forma de la ficha de la ubicación actual.
+    PRECONDICIONES: El cabezal se encuentra sobre una ficha.
+    TIPO: Número.
+    */
+
+    return (nroBolitas(Azul))
+}
+
+// Ejercicio 2
+function haySucesiónAl_(dirección) {
+    /*
+        PROPÓSITO: Indica si hay una sucesión de al menos 3 fichas similares hacia la dirección dada, 
+            comenzando por la ficha en la celda actual hacia las siguientes dos.
+        PARÁMETROS:
+            * dirección: Dirección - la dirección a evaluar si contiene las 3 fichas similares.
+        PRECONDICIONES:
+            * Hay al menos 2 celdas hacia la dirección dada.
+        TIPO: Booleano
+    */
+    
+    return (formaDefichaActual() == formaDeFichaA_Al_(1, dirección) && formaDefichaActual() == formaDeFichaA_Al_(2, dirección))
+}
+
+function formaDeFichaA_Al_(distanciaAMirar, dirección) {
+/*
+    Propósito.
+Describe la forma de la ficha (número) que se encuentra tantos lugares hacia *direcciónAMirar* como
+*distanciaAMirar*. Describe 0 si no hay una ficha en dicha celda.
+    Precondición.
+Hay una celda a *distanciaAMirar* en dirección *direcciónAMirar*.
+    Parámetros.
+*distanciaAMirar*. Número. La distancia a la cual mirar la forma de la ficha.
+*dirección*. Dirección. La dirección hacia la cual mirar la forma de la ficha.
+    Tipo.
+Número
+*/
+
+}
