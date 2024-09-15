@@ -1,0 +1,198 @@
+program {
+    RecorrerTablero()
+}
+
+// Ej-1
+procedure RecorrerTablero(){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    // inicializa el contador
+    nivelDeDificultad := 0
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)) {
+        nivelDeDificultad := nivelDeDificultad + contarObstaculo()
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    }
+    nivelDeDificultad := nivelDeDificultad + contarObstaculo()
+    /*
+    repeat(nivelDeDificultad){
+    Poner(Verde)
+}
+*/
+}
+
+function contarObstaculo() {
+    return (
+        choose
+            1 when (hayObstaculo())
+            0 otherwise
+    )
+}
+
+function obstaculo(){
+    // ir sumando 1 por cada celda que contenga un obstaculo - ContarObstaculos()
+        return(1)
+}
+
+function hayObstaculo()
+{
+    return(nroBolitas(Negro) == 2)
+}
+
+//
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+    //"'posiciona' puede ser pq es para inicializar un recorrido" - este prop indica q es en la esquina opuesta de estas direcciones. Podríamos comentar aparte, la definicion de 'celda inicial'.
+    // por definicion, si existe un tablero entonces existe una celda, minimo es de 1x1
+        PROPÓSITO: Posiciona el cabezal en la primera celda de un recorrido al **dirPrincipal** y al **dirSecundaria**
+        PARÁMETROS:
+            * dirPrincipal: Dirección - es la direccion principal del recorrido.
+            * dirSecundaria: Dirección - es la direccion secundaria del recorrido.
+        PRECONDICIONES:
+            * Las direcciones no deben ser opuestas ni iguales
+        OBSERVACIONES:
+            La primera celda es la esquina opuesta a **dirPrincipal** y al **dirSecundaria**
+    */
+
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// b)
+// si se puede mover al menos a alguna de esas dos direcciones, da true. Es True si aún no estoy en esa esquina de la celda inicial
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:  Indica si hay una celda al **dirPrincipal** y al **dirSecundaria**
+        PARÁMETROS:
+            * dirPrincipal: Dirección - es la direccion principal del recorrido.
+            * dirSecundaria: Dirección - es la direccion secundaria del recorrido.
+        PRECONDICIONES:
+            * Las direcciones no deben ser opuestas ni iguales
+        TIPO: Booleano
+    */
+    
+return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+// c) 
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:  Posiciona el cabezal en la siguiente celda de un recorrido al **dirPrincipal** y al **dirSecundaria**
+        PARÁMETROS:
+            * dirPrincipal: Dirección - es la direccion principal del recorrido.
+            * dirSecundaria: Dirección - es la direccion secundaria del recorrido.
+        PRECONDICIONES:
+            * Las direcciones no deben ser opuestas ni iguales
+            * Debe haber al menos una celda en dirección **dirPrincipal** o **dirSecundaria**
+    */
+    
+    if(puedeMover(dirPrincipal)) {
+        Mover(dirPrincipal) 
+    } else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}
+
+// Ej-2
+function cantidadDeFichasCirculoEnEstaFila() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    cantidadTotalDeCirculos := 0
+    IrAlBorde(Oeste)
+    while (puedeMover(Este)) {
+        cantidadTotalDeCirculos := cantidadTotalDeCirculos + contarCirculo()
+        Mover(Este)
+    }
+    cantidadTotalDeCirculos := cantidadTotalDeCirculos + contarCirculo()
+    return (cantidadTotalDeCirculos)
+}
+
+function contarCirculo() { // contar?
+    return (
+        choose
+            1 when (hayCirculo())
+            0 otherwise
+    )
+}
+
+function hayCirculo()
+{
+    return (nroBolitas(Negro) == 1 && nroBolitas(Azul) == 2)
+}
+
+// Ej-3
+
+program {
+    if(hayFichasExplotadas()){
+        Poner(Rojo)
+    } else {
+        Poner(Verde)
+    }
+}
+
+function hayFichasExplotadas() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    // inicializa el contador
+    celdasVacias := 0
+    while (celdasVacias == 0 && haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)) {
+        celdasVacias := celdasVacias + contarSiEsCeldaVacia()
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    }
+    celdasVacias := celdasVacias + contarSiEsCeldaVacia()
+    return (celdasVacias > 0)
+}
+
+
+function contarSiEsCeldaVacia() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (
+        choose
+            1 when (not hayAlgunaBolita())
+            0 otherwise
+        )
+}
+
+function hayAlgunaBolita() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (
+        hayBolitas(Azul)
+        || hayBolitas(Negro)
+        || hayBolitas(Rojo)
+        || hayBolitas(Verde)
+    )
+}
