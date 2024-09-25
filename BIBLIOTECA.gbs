@@ -1,0 +1,63 @@
+// P2
+/* 3. Por abajo
+En el ejercicio anterior se trabajó con una metodología conocida como top-down: se comienza desde el
+problema, y se lo va descomponiendo en tareas cada vez más pequeñas, hasta llegar al uso de comandos
+primitivos. En este ejercicio vamos a proponer la estrategia inversa, bottom-up: primero se escriben los
+procedimientos elementales, y luego se van armando procedimientos cada vez más complejos, hasta construir
+uno que resuelva el problema original.
+Escribir los siguientes procedimientos en el orden dado. Recuerde escribir los contratos correspondientes.
+a) BIBLIOTECA. PonerUnaDeCada() que ponga una bolita de cada color en la celda actual. 
+*/
+
+// P
+
+// P
+
+// P7 - Funciones simples
+
+/*
+2. Algunas funciones útiles
+BIBLIOTECA. Escribir las siguientes funciones, para agregarlas a la biblioteca.
+a) esCeldaVacía(), que indica si la celda actual se encuentra vacía.
+b) tieneUnaDeCada(), que indica si la celda actual tiene al menos una bolita de cada color.
+c) esCeldaConBolitas(), que indica si la celda actual tiene al menos una bolita, de cualquier color.
+*/
+// Ej 2
+// a)
+function esCeldaVacía() {
+    /*
+        PROPÓSITO:  ....
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
+}
+
+// b)
+function tieneUnaDeCada() {
+    /*
+        PROPÓSITO:  ....
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
+}
+
+// c)
+function esCeldaConBolitas() {
+    /*
+        PROPÓSITO:  ....
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return ()
+}
+
+// P8 - repeticion condicional
+// Ej-6

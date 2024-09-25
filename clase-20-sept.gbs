@@ -1,0 +1,299 @@
+/*
+P9B Alternativa condicional
+
+Escribir la función nroBolitas_EnLaFilaActual que describa la cantidad de bolitas del color dado en la fila actual.
+a) Escribir la solución con un recorrido de la fila actual que utilice una variable cantidadDeBolitasYaVistas
+cuyo propósito sea describir la cantidad de bolitas del color correspondiente que se contaron en cada
+momento.o estar seguro que se consideraron todas
+las celdas para contarlas? ¿Cuántas se vieron antes de empezar a contar? ¿Cóm
+
+b) ¿En qué celda queda el cabezal al utilizar la función desde cualquier punto del programa? ¿Por qué?
+*/
+
+function nroBolitas_EnLaFilaActual(color){
+    /*
+    Proposito: describe la cantidad de bolitas de color **color** dado en la fila actual.
+    Parametros:
+        *color: color - describe el color de las bolitas en la fila actual
+    Precondiciones: Ninguna
+    Tipo: Numero
+    */
+    //inicializar recorrido
+    IrAlBorde(Oeste)
+    cantidadDeBolitasYaVistas := nroBolitas(color)
+    while (puedeMover(Este)) {
+        Mover(Este)
+        cantidadDeBolitasYaVistas := cantidadDeBolitasYaVistas + nroBolitas(color)
+    }
+    return (cantidadDeBolitasYaVistas)
+}
+
+/* (del archivo)
+17. Contando celdas hacia un lado
+BIBLIOTECA. Escribir la función distanciaAlBorde_, que describe la cantidad de celdas que hay entre la celda 
+actual y el borde indicado.
+Observación: si la celda actual se encuentra en el borde, la distancia es 0
+*/
+function distanciaAlBorde_(dirección) {
+    /*
+        PROPOSITO: Describe la cantidad de celdas que hay entre la celda actual y el borde indicado en dirección *dirección*.
+        PRECONDICIONES: Ninguna
+        PARAMETROS:
+            *dirección: Dirección, en que el cabezal censará el tablero
+        TIPO: Número
+        OBSERVACIONES: Si la celda actual se encuentra en el borde indicado, la distancia es 0.
+    */
+    distancia := 0
+    while(puedeMover(dirección)) {
+        Mover(dirección)
+        distancia := distancia + 1
+    }
+    return(distancia)
+}
+
+/*
+Ej 18. Mis coordenadas son...
+
+BIBLIOTECA. Escribir las funciones coordenadaX y coordenadaY que retornen la coordenada de la columna y la
+coordenada de la fila de la celda actual, respectivamente. Suponer que 0 es la coordenada de la primera fila y
+columna. ¿Es necesario escribir un recorrido para estas funciones, o puede reutilizarse alguna otra función ya
+hecha?
+*/
+function coordenadaX() {
+    /*
+        PROPÓSITO:  ....
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (distanciaAlBorde_(Oeste))
+}
+
+function coordenadaY() {
+    /*
+        PROPÓSITO:  ....
+        PARÁMETROS:
+        TIPO: Tipo
+        PRECONDICIONES:
+            * ....
+    */
+    
+    return (distanciaAlBorde_(Sur))
+}
+
+28. Limpiando la cruz
+Escribir el procedimiento LimpiarCruzDeColor_ que dado un color limpia el dibujo de una cruz realizado con
+bolitas de dicho color, bajo la suposición de que el cabezal se encuentra en el centro de dicha cruz. (ann: cualquier tipo de cruz, 
+uno o varios colores puede tener, pero se va a limpiar este color especifico)
+procedure LimpiarCruzDeColor_(color) {
+    /*
+        PROPÓSITO:  dado un color, limpia el dibujo de una cruz realizado con bolitas de dicho color.
+        PARÁMETROS:
+            * color: Color - color a limpiar del dibujo
+        PRECONDICIONES:
+            * El cabezal se encuentra en el centro de la cruz
+    */
+    dirección := minDir()
+    SacarTodasLasDeColor_(color)
+    distanciaAlBorde := distanciaAlBorde_(dirección)
+    while(puedeMover(dirección) && dirección /= maxDir()) {
+        LimpiarAl_()
+        dirección := siguiente(dirección)
+    }
+
+}
+
+procedure LimpiarColor_Al_(color, dirección) {
+    /*
+        PROPÓSITO: Limpia del color **color** todas las celdas en la dirección **dirección**. No limpia la celda actual
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    movimientos := 0
+    while (puedeMover(dirección)) {
+        Mover(dirección)
+        SacarTodasLasDeColor_(color)
+        movimientos := movimientos +1
+    }
+    repeat (movimientos) {
+        
+    }
+}
+
+2. Algunas funciones útiles
+BIBLIOTECA. Escribir las siguientes funciones, para agregarlas a la biblioteca.
+*/
+/*
+a) esCeldaVacía(), que indica si la celda actual se encuentra vacía.
+*/
+function esCeldaVacía() {
+    /*
+       PROPÓSITO: Indica si la celda actual se encuentra vacía.
+       TIPO: Booleano
+       PRECONDICIONES:
+         * Ninguna
+    */
+    return (
+      not hayBolitas(Azul) && not hayBolitas(Negro) &&
+      not hayBolitas(Rojo) && not hayBolitas(Verde)
+    )
+}
+
+6. Sacando todas las de un color
+BIBLIOTECA. Escribir un procedimiento SacarTodasLasDeColor_(colorASacar), que quite de la celda actual 
+todas las bolitas del color indicado por el parámetro.
+PISTA: Considerar utilizar el procedimiento Sacar_DeColor_, definido en la práctica anterior. ¿Qué argumentos 
+se le deberían pasar?
+*/
+procedure SacarTodasLasDeColor_(colorASacar){
+  /*
+    PROPÓSITO: Saca todas las bolitas de color **colorASacar** de la celda actual. Sí
+      no hubiera ninguna bolita de ese color, no hace nada.
+    PARÁMETROS:
+      * colorASacar: Color - el color del cual se sacarán las bolitas.
+    PRECONDICIONES:
+      * Ninguna
+  */
+  Sacar_DeColor_(nroBolitas(colorASacar), colorASacar)
+}
+
+/*
+11. Sacar de a muchas
+BIBLIOTECA. Escribir un procedimiento Sacar_DeColor_(cantidadASacar, colorASacar) que dado un número 
+cantidadASacar y un color colorASacar, saque tantas bolitas como se indica del color dado de la celda actual
+*/
+procedure Sacar_DeColor_(cantidadASacar, colorASacar) {
+  /*
+    PROPÓSITO: Saca tantas bolitas como **cantidadASacarr** de color **colorAPoner**.
+    PARÁMETROS:
+      * cantidadASacar: Un número que indica cuántas bolitas se van a sacar.
+      * colorASacar: El color del cual se sacarán las bolitas.
+    PRECONDICIONES:
+      * Debe haber al menos **cantidadASacar** bolitas de color **colorASacar**
+        en la celda actual.
+  */
+  repeat(cantidadASacar) {
+    Sacar(colorASacar)
+  }
+}
+
+/*
+19. Contando filas y columnas
+BIBLIOTECA. Escribir las funciones nroFilas y nroColumnas que describan la cantidad de filas y columnas del 
+tablero respectivamente. 
+a) ¿Se podría conocer la cantidad de filas o columnas del tablero sin que el cabezal se mueva realmente de la 
+celda actual?
+b) ¿Qué habría que usar si hubiese que hacerlo exclusivamente con procedimientos?
+c) ¿Es necesario escribir un recorrido para estas funciones, o puede reutilizarse alguna otra función ya hecha?
+*/
+function nroFilas() {
+    /*
+        PROPOSITO: Describe el número de filas que hay en el tablero.
+        PRECONDICIONES: Ninguna
+        TIPO: Número
+    */
+    return(distanciaAlBorde_(Norte) + distanciaAlBorde_(Sur) + 1)    
+}
+
+function nroColumnas() {
+    /*
+        PROPOSITO: Describe el número de columnas que hay en el tablero.
+        PRECONDICIONES: Ninguna
+        TIPO: Número
+    */
+    return(distanciaAlBorde_(Este) + distanciaAlBorde_(Oeste) + 1)    
+}
+
+
+procedure RepararTodasLasMáquinasDeEdificio() {
+    /*
+        PROPÓSITO:  Repara/Limpia de virus todas las máquinas del edificio, dejando una marca de OK en cada maquina
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * El cabezal/El robot está en el hall del edificio.
+            * No hay máquinas en la planta baja del edificio.
+            * El hall del edificio se representa en la celda de la esquina Sur-Oeste.
+            ● El hall de cada piso se representa en la celda del borde Oeste del piso en cuestión, donde los pisos son representados
+        en una fila, desde la fila siguiente a la más al Sur hacia el Norte, tantos pisos como se indique en el hall del edificio.
+            
+    */
+
+    repeat (cantidadDePisos()) {
+        Mover(Norte)
+        LimpiarLasMaquinasDelPiso()
+    }
+    repeat (cantidadDePisos()) {
+        Mover(Sur)
+    }
+    
+    // 
+    
+}
+
+procedure LimpiarLasMaquinasDelPiso() {
+    /*
+        PROPÓSITO:  Repara todas las maquinas del piso actual que tengan virus, es decir deja a todas las máquinas del piso sin virus.
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * El cabezal está en el hall del piso actual.
+            * Las maquinas están en celdas contiguas al hall del piso.
+    */
+    
+    repeat (cantidadDeMáquinasEnElPiso()) {
+        Mover(Este)
+        LimpiarMaquinaSiTieneVirus()
+    }
+    //volver al hall
+    IrAlBorde(Oeste)
+}
+
+procedure LimpiarMaquinaSiTieneVirus() {
+    /*
+        PROPÓSITO: Repara la máquina en la celda actual, si tiene virus
+        PARÁMETROS:
+            * parámetro1: tipo - descripción.
+            * parámetro2: tipo - descripción.
+        PRECONDICIONES:
+            * ....
+    */
+    if(hayBolitas(Rojo)) {
+        SacarTodasLasDeColor_(Rojo)
+    }
+}
+
+function cantidadDePisos() {
+/*
+Propósito.Describe la cantidad de pisos que hay en el edificio.
+Precondición. El cabezal está en el hall del edificio.
+Tipo.Número.
+*/
+    return (nroBolitas(Negro))
+}
+
+
+function cantidadDeMáquinasEnElPiso() {
+/*
+Propósito.Describe la cantidad de máquinas en el piso actual.
+Precondición. El cabezal está en el hall de uno de los pisos.
+Tipo.Número.
+*/
+
+
+    return (nroBolitas(Verde) + maquinasConVirus)
+}
+
+
+/*
+            ● Cada piso tiene una cantidad distinta de máquinas, y la cantidad se indicará en el hall del piso.
+            ● Los virus se representan con bolitas rojas. Hay virus que se representan con 1 bolita Roja, otros con 2 bolitas rojas,
+otros con 3, 4, 5, y hasta 6 bolitas rojas dependiendo del tipo de virus.
+            ● Una indicación de que la máquina de la celda actual no tiene virus (marca de OK) se representa con una bolita verde.
+*/

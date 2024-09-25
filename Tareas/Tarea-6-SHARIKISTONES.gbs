@@ -1,0 +1,181 @@
+// Ej 1
+/*
+A la representación mencionada se agregan las bolitas verdes. Estas nos dicen el puntaje que
+obtendremos al quemarla. Hay una entre todas las fichas de la grilla que es la que más puntaje tiene. Queremos
+saber a través de fichaConMasValorActualEnGrilla cuál es la forma de ficha, de las 4 que hay en el juego, tiene
+el mayor puntaje. Definirla.
+*/
+function fichaConMasValorActualEnGrilla() {
+    /*
+    PROPÓSITO:Describe la forma de la ficha que otorga mas puntaje en la grilla actual.
+    PRECONDICIONES: Debe haber una ficha en la grilla que otorga mas puntaje que las demas.
+    TIPO: Número
+    */  
+    IrAFichaConPuntaje_(mayorPuntajeDeFichaEnGrilla())
+    return(formaDeFichaAca())
+}
+
+function mayorPuntajeDeFichaEnGrilla(){
+    /*
+    PROPÓSITO: Describe el mayor puntaje que tiene una ficha en la grilla actual.
+    PRECONDICIONES: Debe haber una ficha en la grilla que otorga más puntaje que las demas.
+    TIPO: Número
+    OBSERVACIONES: recorrido de maximo/minimo sobre la grilla, ubicacion por ubicacion.
+    */  
+    IrAPrimerCeldaEnUnRecorridoAl_y_(Este, Norte)
+    mayorPuntaje := puntajeDeFichaAca()
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)){
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+        mayorPuntaje := maximoEntre_Y_(mayorPuntaje, puntajeDeFichaAca())
+    }
+    return(mayorPuntaje)
+}
+
+function maximoEntre_Y_ (numero1, numero2) {
+    /*
+    PROPÓSITO: Describir que valor es mayor entre *numero1* y *numero2*. 
+    PARÁMETROS: 
+        *numero1 - Numero. El primer numero a comparar
+        *numero2 - Numero. El segundo numero a comparar
+    PRECONDICIONES: Los valores no son iguales.
+    */ 
+    return (choose
+        numero1 when (numero1 > numero2)
+        numero2 otherwise)
+ }
+
+procedure IrAFichaConPuntaje_(puntaje){
+    /*
+    PROPÓSITO: Posiciona el cabezal en la ficha con puntaje *puntaje* de la grilla.
+    PRECONDICIONES: Debe haber una ficha con puntaje *puntaje* en la grilla.
+    PARÁMETROS: *puntaje* - Numero - puntaje de la ficha
+    OBSERVACIONES: recorrido de busqueda sobre la grilla, sabiendo que lo que busco está.
+    */    
+    IrAPrimerCeldaEnUnRecorridoAl_y_(Este, Norte)
+    while(puntajeDeFichaAca() /= puntaje){
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+}
+
+function formaDeFichaAca(){
+    /*
+    PROPÓSITO: Describe, según el número de bolitas azules, la forma de la ficha en la celda actual.
+    PRECONDICIONES: Debe haber una ficha en la celda actual
+    TIPO: Número
+    OBSERVACIONES:
+        *Los números correspondientes a cada ficha son:
+        2 para círculo, 3 para triangulo, 4 para rombo y 5 para estrella
+    */
+    return (nroBolitas(Azul))
+}
+
+function puntajeDeFichaAca(){
+    /*
+    PROPÓSITO: Describe el puntaje de la ficha en la celda actual
+    PRECONDICIONES: Debe haber una ficha en la celda actual
+    TIPO: Número
+    */
+    return(nroBolitas(Verde))
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+    //"'posiciona' puede ser pq es para inicializar un recorrido" - este prop indica q es en la esquina opuesta de estas direcciones. Podríamos comentar aparte, la definicion de 'celda inicial'.
+    // por definicion, si existe un tablero entonces existe una celda, minimo es de 1x1
+        PROPÓSITO: Posiciona el cabezal en la primera celda de un recorrido al **dirPrincipal** y al **dirSecundaria**
+        PARÁMETROS:
+            * dirPrincipal: Dirección - es la direccion principal del recorrido.
+            * dirSecundaria: Dirección - es la direccion secundaria del recorrido.
+        PRECONDICIONES:
+            * Las direcciones no deben ser opuestas ni iguales
+        OBSERVACIONES:
+            La primera celda es la esquina opuesta a **dirPrincipal** y al **dirSecundaria**
+    */
+
+    IrAlBorde(opuesto(dirPrincipal))
+    IrAlBorde(opuesto(dirSecundaria))
+}
+
+// si se puede mover al menos a alguna de esas dos direcciones, da true. Es True si aún no estoy en esa esquina de la celda inicial
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:  Indica si hay una celda al **dirPrincipal** y al **dirSecundaria**
+        PARÁMETROS:
+            * dirPrincipal: Dirección - es la direccion principal del recorrido.
+            * dirSecundaria: Dirección - es la direccion secundaria del recorrido.
+        PRECONDICIONES:
+            * Las direcciones no deben ser opuestas ni iguales
+        TIPO: Booleano
+    */
+    
+return (puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+procedure IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+    /*
+        PROPÓSITO:  Posiciona el cabezal en la siguiente celda de un recorrido al **dirPrincipal** y al **dirSecundaria**
+        PARÁMETROS:
+            * dirPrincipal: Dirección - es la direccion principal del recorrido.
+            * dirSecundaria: Dirección - es la direccion secundaria del recorrido.
+        PRECONDICIONES:
+            * Las direcciones no deben ser opuestas ni iguales
+            * Debe haber al menos una celda en dirección **dirPrincipal** o **dirSecundaria**
+    */
+    
+    if(puedeMover(dirPrincipal)) {
+        Mover(dirPrincipal) 
+    } else {
+        IrAlBorde(opuesto(dirPrincipal))
+        Mover(dirSecundaria)
+    }
+}
+
+// Ej 2
+/*
+Definir la función estaRodeadaDeObstaculos, que nos indica si la ficha de la ubicación 
+actual está rodeada, en todas las ubicaciones lindantes perpendiculares disponibles, de obstáculos.
+*/
+function estaRodeadaDeObstaculos(){
+    /*
+    PROPÓSITO: Indica si la ficha de la ubicación actual está rodeada, en todas las ubicaciones 
+              lindantes perpendiculares disponibles, de obstáculos.
+    PRECONDICIONES: Hay una ficha en la ubicacion actual.
+    TIPO: Booleano
+    OBSERVACIONES: recorrido de busqueda sobre direcciones, no estoy de seguro de encontrar lo que busco
+    */    
+    dirActual := minDir()
+    while(dirActual /= maxDir() && hayObstaculoAl_(dirActual)){
+        dirActual := siguiente(dirActual)
+    }
+    return(hayObstaculoAl_(dirActual))
+}
+
+function hayObstaculoAl_(direccion){
+    /*
+    PROPÓSITO: Indica si en la celda lindante hacia el *direccion* hay un obstaculo si es que hay una celda.
+    PRECONDICIONES: Ninguna
+    TIPO: Booleano
+    PARÁMETROS: *direccion* - Direccion - direccion de la celda 
+    */ 
+    return(puedeMover(direccion) && hayObstaculoHaciaEl_(direccion))
+}
+
+function hayObstaculoHaciaEl_(direccion){
+    /*
+    PROPÓSITO: Indica si en la celda lindante hacia el *direccion* hay un obstaculo.
+    PRECONDICIONES: Debe haber al menos una celda lindante al *direccion*
+    PARÁMETROS: *direccion* - Direccion - direccion de la celda 
+    TIPO: Booleano
+    */    
+    Mover(direccion)
+    return(hayObstaculoAca())
+}
+
+function hayObstaculoAca(){
+    /*
+    PROPÓSITO: Indica si en la celda actual hay un obstaculo.
+    PRECONDICIONES: ninguna
+    TIPO: Booleano
+    */
+    return(nroBolitas(Negro)==2)
+}
