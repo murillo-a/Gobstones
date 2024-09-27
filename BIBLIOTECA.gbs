@@ -32,7 +32,11 @@ function esCeldaVacía() {
             * ....
     */
     
-    return ()
+    return (not hayBolitas(Azul)
+            && not hayBolitas(Negro)
+            && not hayBolitas(Rojo)
+            && not hayBolitas(Verde)
+    )
 }
 
 // b)
